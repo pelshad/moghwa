@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.conn.domain.board.BoardMapper">
+    <!-- 테이블 전체 컬럼 -->
+    <sql id="postColumns">
+        bid
+        , title
+        , content
+        , user_id
+        , view_cnt
+        , delete_yn
+        , created_date
+        , modified_date
+        , file
+    </sql>
+
+    <!-- 게시글 저장 -->
+    <insert id="save"
+            parameterType="com.conn.domain.board.BoardPostRequest"
+            useGeneratedKeys="true"
+            keyProperty="bid">
+        INSERT INTO ${tableName} (
+        <include refid="postColumns" />
+        ) VALUES (
+        #{bid}
+        , #{title}
+        , #{content}
+        , #{userId}
+        , 0
+        , 0
+        , NOW()
+        , NULL
+        , #{file}
+        )
+    </insert>
+
+    <!-- 게시글 리스트 조회 -->
+    <select id="findAll" parameterType="com.conn.domain.board.BoardGetRequest" resultType="com.conn.domain.board.BoardDBResponse">
+        SELECT
+        <include refid="postColumns" />
+        FROM
+            ${tableName}
+        WHERE
+            delete_yn = 0
+        ORDER BY
+            bid
+        DESC
+        LIMIT
+            #{pageLimit}
+        OFFSET
+            #{pageOffset}
+    </select>
+
+    <!-- 페이징 갯수 조회 -->
+    <select id="pageCount" parameterType="String" resultType="int">
+        SELECT
+        CEIL(COUNT(*)/10)
+        FROM
+        ${tableName}
+        WHERE
+        delete_yn = 0
+    </select>
+
+    <!-- 게시글 상세정보 조회 -->
+    <select id="findById" parameterType="com.conn.domain.board.BoardGetRequest" resultType="com.conn.domain.board.BoardDBResponse">
+        SELECT
+        <include refid="postColumns" />
+        FROM
+            ${tableName}
+        WHERE
+            bid = #{bid}
+        AND
+            delete_yn = 0
+    </select>
+
+    <update id="viewCount" parameterType="com.conn.domain.board.BoardGetRequest">
+        UPDATE
+            ${tableName}
+        SET
+            view_cnt = view_cnt + 1
+        WHERE
+            bid = #{bid}
+    </update>
+
+    <!-- 게시글 수정 -->
+    <update id="update" parameterType="com.conn.domain.board.BoardPostRequest">
+        UPDATE
+            ${tableName}
+        SET
+            modified_date = NOW()
+            , title = #{title}
+            , content = #{content}
+            , user_id = #{userId}
+        WHERE
+            bid = #{bid}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deleteById" parameterType="com.conn.domain.board.BoardPostRequest">
+        UPDATE
+            ${tableName}
+        SET
+            delete_yn = 1
+        WHERE
+            bid = #{bid}
+    </delete>
+
+</mapper>

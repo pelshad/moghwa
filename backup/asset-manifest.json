@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b16ff283.css",
+    "main.js": "/static/js/main.8a2d304a.js",
+    "static/media/banner.png": "/static/media/banner.71b3764e811bae8487f2.png",
+    "static/media/reviewBg.png": "/static/media/reviewBg.20ff347ca823d4d4113c.png",
+    "static/media/mo.png": "/static/media/mo.b0002594e6f174db6b86.png",
+    "static/media/car.png": "/static/media/car.70f5ddbef10690307f87.png",
+    "static/media/404.jpg": "/static/media/404.87049462a1ae4986277e.jpg",
+    "static/media/제품3.png": "/static/media/제품3.09cc56eda11e7e30972b.png",
+    "static/media/제품4.png": "/static/media/제품4.5689b2a1502f1d98f3c1.png",
+    "static/media/제품1.png": "/static/media/제품1.d308346af0cc48ba2d00.png",
+    "static/media/제품2.png": "/static/media/제품2.0d8e2c13b0599abc6790.png",
+    "static/media/리뷰4.png": "/static/media/리뷰4.4ce356dce91d94945022.png",
+    "static/media/리뷰1.png": "/static/media/리뷰1.bf7818d819caeebfd7a9.png",
+    "static/media/리뷰3.png": "/static/media/리뷰3.3df53fb47dfeaa66c240.png",
+    "static/media/리뷰2.png": "/static/media/리뷰2.7a966e8e929f59749421.png",
+    "static/media/error.png": "/static/media/error.415195ac478dcdd84e69.png",
+    "index.html": "/index.html",
+    "main.b16ff283.css.map": "/static/css/main.b16ff283.css.map",
+    "main.8a2d304a.js.map": "/static/js/main.8a2d304a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b16ff283.css",
+    "static/js/main.8a2d304a.js"
+  ]
+}

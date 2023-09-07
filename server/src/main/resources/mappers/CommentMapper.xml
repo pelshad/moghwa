@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.conn.domain.comment.CommentMapper">
+    <sql id="AllColumns">
+          cid
+        , bid
+        , table_name
+        , user_id
+        , content
+        , delete_yn
+        , created_date
+    </sql>
+
+    <insert id="save" parameterType="com.conn.domain.comment.CommentPostRequest"
+            useGeneratedKeys="true" keyProperty="cid">
+        INSERT INTO comments (
+        <include refid="AllColumns" />
+        ) VALUES (
+        #{cid}
+        , #{bid}
+        , #{tableName}
+        , #{userId}
+        , #{content}
+        , 0
+        , NOW()
+        )
+    </insert>
+
+    <select id="findAll"
+            parameterType="com.conn.domain.comment.CommentGetRequest"
+            resultType="com.conn.domain.comment.CommentDBResponse">
+        SELECT
+            <include refid="AllColumns" />
+        FROM
+            comments
+        WHERE
+            table_name = #{tableName}
+        AND
+            bid = #{bid}
+        AND
+            delete_yn = 0
+    </select>
+
+    <update id="update" parameterType="com.conn.domain.comment.CommentPostRequest">
+        UPDATE
+            comments
+        SET
+            content = #{content}
+        WHERE
+            cid = #{cid}
+    </update>
+
+    <delete id="deleteById" parameterType="com.conn.domain.comment.CommentPostRequest">
+        UPDATE
+            comments
+        SET
+            delete_yn = 1
+        WHERE
+            cid = #{cid}
+    </delete>
+
+
+</mapper>
+
